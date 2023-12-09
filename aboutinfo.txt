@@ -1,0 +1,20 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                                                     #
+#                                                     #
+#                  About This Game                    #
+#                                                     #
+#        In fact, it's a classical pac-man game,      #
+#    which gives you a new point of view of collet-   #
+#    ing every 'o' in the map. And avoid to meet      #
+#    the 'X'! After all the 'o's are collected,       #
+#    the '?', which worths amount of goals, will      #
+#    appears at the place you're born. Return to      #
+#    your birhplace and leave here with the trea-     #
+#    sure you won!                                    #
+#        There are two modes, the Classic is easy     #
+#    while the Hard is harder than you think!         #
+#        Enjoy your adventure.                        #
+#                                                     #
+#                                                     #
+#                              INPUT 'Y' TO RETURN    #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # #

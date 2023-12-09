@@ -8,8 +8,8 @@ int main()
 {
     while(loading){
         switch(menu()){
-            case 1:game1();break;
-            case 2:game2();break;
+            case 1:game(1);break;
+            case 2:game(2);break;
             case 3:showlist();break;
             case 4:about();break;
             default:loading=false;break;

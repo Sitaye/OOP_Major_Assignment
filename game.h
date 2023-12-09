@@ -54,76 +54,40 @@ void showlist()
     listoutput.close();
     back_to_menu();
 }
-void game1()
+void game(int modenum)
 {
-    std::ifstream map1("map1.txt");
-    int len=1;
-    std::string s;
-    while(std::getline(map1,s))
-        map[len++]=s;
-    map1.close();
-    reverse=true;
-    Pacman pacman(Player_x_1,Player_y_1,1);
-    Ghost ghost1(Ghost1_x_1,Ghost1_y_1),ghost2(Ghost2_x_1,Ghost2_y_1),ghost3(Ghost3_x_1,Ghost3_y_1),ghost4(Ghost4_x_1,Ghost4_y_1);
-    char moved;
-    while(1){
-        system("cls");
-        for(int i=1;i<=Init_Height_1;i++){
-            for(int j=0;j<=Init_Width_1-1;j++)
-                std::cout<<map[i][j];
-            std::cout<<"\n";
-        }
-        pacman.FinalGoal();
-        if(pacman.checkwin()){
-            std::cout<<"Congratulations! You are the winner!\n";
-            saved(pacman.getGoal(),1);
-            break;
-        }
-        if(pacman.checkpresentation())
-            std::cout<<"Go to the birthplace to catch the '?' !\n";
-        if (ghost1.checkCollision(pacman.getX(), pacman.getY()) || ghost2.checkCollision(pacman.getX(), pacman.getY()) || ghost3.checkCollision(pacman.getX(), pacman.getY()) || ghost4.checkCollision(pacman.getX(), pacman.getY())) {
-            std::cout << "Game Over!\n";
-            saved(pacman.getGoal(),1);
-            break;
-        }
-        if(_kbhit()){
-            moved = _getch();
-            pacman.Chage_Direction(moved);
-        }
-        pacman.move();
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        if(reverse){
-            ghost1.move(pacman.getX(), pacman.getY());
-            ghost2.move(pacman.getX(), pacman.getY());
-            ghost3.move(pacman.getX(), pacman.getY());
-            ghost4.move(pacman.getX(), pacman.getY());
-        }
-        if(Ghost::frozen==0)
-            reverse=!reverse;
-        else
-            Ghost::frozen--;
-        if(pacman.getGoal()==MAX_GOAL_1){
-            map[Final_Goal_X_1][Final_Goal_Y_1]='?';
-            pacman.Chage_Presentation();
-        }
+    int Init_Height,Init_Width,MAX_GOAL,Final_Goal_X,Final_Goal_Y;
+    std::string address;
+    if(modenum==1){
+        address = "map1.txt";
+        Init_Height=Init_Height_1;
+        Init_Width=Init_Width_1;
+        MAX_GOAL=MAX_GOAL_1;
+        Final_Goal_X=Final_Goal_X_1;
+        Final_Goal_Y=Final_Goal_Y_1;
     }
-}
-void game2()
-{
-    std::ifstream map2("map2.txt");
+    else{
+        address = "map2.txt";
+        Init_Height=Init_Height_2;
+        Init_Width=Init_Width_2;
+        MAX_GOAL=MAX_GOAL_2;
+        Final_Goal_X=Final_Goal_X_2;
+        Final_Goal_Y=Final_Goal_Y_2;
+    }
+    std::ifstream mapl(address);
     int len=1;
     std::string s;
-    while(std::getline(map2,s))
+    while(std::getline(mapl,s))
         map[len++]=s;
-    map2.close();
+    mapl.close();
     reverse=true;
-    Pacman pacman(Player_x_2,Player_y_2,2);
-    Ghost ghost1(Ghost1_x_2,Ghost1_y_2),ghost2(Ghost2_x_2,Ghost2_y_2),ghost3(Ghost3_x_2,Ghost3_y_2),ghost4(Ghost4_x_2,Ghost4_y_2);
+    Pacman pacman(modenum);
+    Ghost ghost1(modenum,1),ghost2(modenum,2),ghost3(modenum,3),ghost4(modenum,4);
     char moved;
     while(1){
         system("cls");
-        for(int i=1;i<=Init_Height_2;i++){
-            for(int j=0;j<=Init_Width_2-1;j++)
+        for(int i=1;i<=Init_Height;i++){
+            for(int j=0;j<=Init_Width-1;j++)
                 std::cout<<map[i][j];
             std::cout<<"\n";
         }
@@ -135,7 +99,7 @@ void game2()
         }
         if(pacman.checkpresentation())
             std::cout<<"Go to the birthplace to catch the '?' !\n";
-        if (ghost1.checkCollision(pacman.getX(), pacman.getY()) || ghost2.checkCollision(pacman.getX(), pacman.getY()) || ghost3.checkCollision(pacman.getX(), pacman.getY()) || ghost4.checkCollision(pacman.getX(), pacman.getY())) {
+        if(ghost1.checkCollision(pacman.getX(), pacman.getY()) || ghost2.checkCollision(pacman.getX(), pacman.getY()) || ghost3.checkCollision(pacman.getX(), pacman.getY()) || ghost4.checkCollision(pacman.getX(), pacman.getY())) {
             std::cout << "Game Over!\n";
             saved(pacman.getGoal(),2);
             break;
@@ -156,8 +120,8 @@ void game2()
             reverse=!reverse;
         else
             Ghost::frozen--;
-        if(pacman.getGoal()==MAX_GOAL_2){
-            map[Final_Goal_X_2][Final_Goal_Y_2]='?';
+        if(pacman.getGoal()==MAX_GOAL){
+            map[Final_Goal_X][Final_Goal_Y]='?';
             pacman.Chage_Presentation();
         }
     }

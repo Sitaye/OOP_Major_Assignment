@@ -16,5 +16,5 @@
 #        Enjoy your adventure.                        #
 #                                                     #
 #                                                     #
-#                              INPUT 'Y' TO RETURN    #
+#                              INPUT ANY TO RETURN    #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # #

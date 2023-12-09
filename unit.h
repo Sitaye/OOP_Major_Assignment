@@ -16,10 +16,22 @@ class Ghost : public Unit
     public:
         static int frozen;
         char pre='o';
-        Ghost(int x0,int y0)
+        Ghost(int mapnum,int enemynum)
         {
-            position_x=x0;
-            position_y=y0;
+            if(mapnum==1)
+                switch(enemynum){
+                    case 1:position_x=Ghost1_x_1,position_y=Ghost1_y_1;break;
+                    case 2:position_x=Ghost2_x_1,position_y=Ghost2_y_1;break;
+                    case 3:position_x=Ghost3_x_1,position_y=Ghost3_y_1;break;
+                    case 4:position_x=Ghost4_x_1,position_y=Ghost4_y_1;break;
+                }
+            else if(mapnum==2)
+                switch(enemynum){
+                    case 1:position_x=Ghost1_x_2,position_y=Ghost1_y_2;break;
+                    case 2:position_x=Ghost2_x_2,position_y=Ghost2_y_2;break;
+                    case 3:position_x=Ghost3_x_2,position_y=Ghost3_y_2;break;
+                    case 4:position_x=Ghost4_x_2,position_y=Ghost4_y_2;break;
+                }
         }
         void move(int pacX, int pacY)
         {

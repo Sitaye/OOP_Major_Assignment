@@ -58,15 +58,17 @@ class Pacman : public Unit
         int goal = 0, smallballnum, bigballnum;
         char direction='~',win=false,presentation=false;
     public:
-        Pacman(int x0, int y0,int mapnum)
+        Pacman(int mapnum)
         {
-            position_x=x0;
-            position_y=y0;
             if(mapnum==1){
+                position_x=Player_x_1;
+                position_y=Player_y_1;
                 smallballnum=small_total_1;
                 bigballnum=big_total_1;
             }
             else if(mapnum==2){
+                position_x=Player_x_2;
+                position_y=Player_y_2;
                 smallballnum=small_total_2;
                 bigballnum=big_total_2;
             }
@@ -117,16 +119,16 @@ class Pacman : public Unit
         {
             return goal;
         }
-        bool checkwin()
+        void Chage_Presentation()
         {
-            return win;
+            presentation=true;
         }
         bool checkpresentation()
         {
             return presentation;
         }
-        void Chage_Presentation()
+        bool checkwin()
         {
-            presentation=true;
+            return win;
         }
 };

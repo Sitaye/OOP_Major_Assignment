@@ -1,5 +1,9 @@
-#include<bits/stdc++.h>
+#include<iostream>
 #include<conio.h>
+#include<thread>
+#include<ctime>
+#include<fstream>
+#include<string>
 #include"const.h"
 #include"unit.h"
 #include"game.h"
